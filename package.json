@@ -1,0 +1,68 @@
+{
+  "name": "electron-demo",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/electron/index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "rimraf dist  && vite build && electron-builder"
+  },
+  "debug": {
+    "env": {
+      "VITE_DEV_SERVER_HOSTNAME": "127.0.0.1",
+      "VITE_DEV_SERVER_PORT": 6666,
+      "VITE_DEV_SERVER_URL": "http://127.0.0.1:6666"
+    }
+  },
+  "dependencies": {
+    "puppeteer": "^19.7.1",
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "electron": "^23.1.0",
+    "electron-builder": "^23.6.0",
+    "electron-devtools-installer": "^3.2.0",
+    "request-promise-native": "^1.0.9",
+    "rimraf": "^4.1.2",
+    "sass": "^1.52.0",
+    "vite": "^4.1.1",
+    "vite-plugin-electron": "^0.11.1"
+  },
+  "build": {
+    "appId": "com.electron.demo",
+    "productName": "ElectronDemo",
+    "asar": true,
+    "copyright": "Linyer",
+    "directories": {
+      "output": "release/${version}"
+    },
+    "files": [
+      "dist"
+    ],
+    "mac": {
+      "artifactName": "${productName}_${version}.${ext}",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}_${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}
